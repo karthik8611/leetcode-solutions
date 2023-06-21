@@ -13,27 +13,55 @@ class Solution {
         
      // fast and slow pointers
         
-        if(head== null || head.next==null){
-            return null;
-        }
+       //better code 
+       if(head== null || head.next==null){
+             return null;
+         }
         
         ListNode fast=head;
         ListNode slow=head;
         ListNode prev=head;
         
-        while( fast!=null && fast.next!=null){
+        while(fast!=null && fast.next!=null){
+            prev=slow;
             fast=fast.next.next;
             slow=slow.next;
             
+            //prev=slow;
         }
-        
-      ListNode nodeAf=slow.next;
-        
-        while(prev.next!=slow){
-            prev=prev.next;
-        }
-        prev.next=nodeAf;
+        prev.next=slow.next;
         return head;
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//         if(head== null || head.next==null){
+//             return null;
+//         }
+        
+//         ListNode fast=head;
+//         ListNode slow=head;
+//         ListNode prev=head;
+        
+//         while( fast!=null && fast.next!=null){
+//             fast=fast.next.next;
+//             slow=slow.next;
+            
+//         }
+        
+//       ListNode nodeAf=slow.next;
+        
+//         while(prev.next!=slow){
+//             prev=prev.next;
+//         }
+//         prev.next=nodeAf;
+//         return head;
      
     
         
