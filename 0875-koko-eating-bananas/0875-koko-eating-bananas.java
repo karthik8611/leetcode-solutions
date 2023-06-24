@@ -17,7 +17,10 @@ class Solution {
         
    // hi malik solution for better understanding;     
      // we binary search algorith here   
-        
+    
+//         Time Complexity :- BigO(N * log(M)) where N is no of piles & M is range of K (left to right)
+
+// Space Complexity :- BigO(1) as not using any extra space
     }
     
     public boolean eat(int [] piles,int k,int h){
