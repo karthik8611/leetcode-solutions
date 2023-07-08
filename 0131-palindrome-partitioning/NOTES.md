@@ -1,0 +1,2 @@
+https://leetcode.com/problems/palindrome-partitioning/discuss/182307/Java%3A-Backtracking-Template-General-Approach
+https://leetcode.com/problems/palindrome-partitioning/discuss/1667647/Well-Explained-JAVA-C%2B%2B-PYTHON-JavaScript-oror-Easy-for-mind-to-Accept-it
