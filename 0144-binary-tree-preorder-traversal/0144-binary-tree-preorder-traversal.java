@@ -25,16 +25,14 @@ class Solution {
         
         stack.push(root);
         while(!stack.isEmpty()){
-            TreeNode topNode=stack.peek();
-            list.add(topNode.val);
-            stack.pop();
-            if(topNode.right!=null){
+            TreeNode topNode=stack.pop();
+            if(topNode!=null){
+                list.add(topNode.val);
                 stack.push(topNode.right);
-            }
-            
-            if(topNode.left!=null){
                 stack.push(topNode.left);
             }
+            
+           
         }
         return list;
         
