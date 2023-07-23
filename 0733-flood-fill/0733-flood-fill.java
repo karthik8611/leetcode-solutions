@@ -7,8 +7,8 @@ class Solution {
 // Space Complexity : O(n*m)
     }
     public void dfs(int [][] image,int sr,int sc,int color,int  curr){
-        if(sr<0 || sr>=image.length || sc<0 || sc>=image[0].length ) return;
-        if(image[sr][sc]!=curr) return;
+        if(sr<0 || sr>=image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=curr) return;
+     //   if(image[sr][sc]!=curr) return;
          
         image[sr][sc]=color;
         dfs(image,sr+1,sc,color,curr);
