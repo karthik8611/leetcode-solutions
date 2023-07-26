@@ -10,31 +10,20 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        // itertive approach- 
-//         ListNode prev=null;
-//         ListNode curr=head;
-//         ListNode forw=null;
         
-//         while(curr!=null){
-//             forw=curr.next;
-//             curr.next=prev;
-//             prev=curr;
-//             curr=forw;
-//         }
+        ListNode prev=null;
+        ListNode curr=head;
+        ListNode far=null;
         
-//         return prev;
-        
-        if(head==null || head.next ==null){
-            return head;
+        while(curr!=null){
+            far=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=far;
         }
         
-        ListNode newHead=reverseList(head.next);
-        
-        head.next.next=head;
-        head.next=null;
-        return newHead;
-        
-        
+        return prev;
+     
         
     }
 }
