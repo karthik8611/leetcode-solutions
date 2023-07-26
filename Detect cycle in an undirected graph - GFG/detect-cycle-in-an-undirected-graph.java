@@ -31,60 +31,64 @@ class GFG {
 }
 // } Driver Code Ends
 
-
-class Node {
+class Node{
+    
     int first;
     int second;
-
-    public Node(int first, int second) {
-        this.first = first;
-        this.second = second;
+    public Node(int first,int second){
+        this.first=first;
+        this.second=second;
     }
 }
 
-class Solution {
 
+class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-
-        boolean visited[] = new boolean[V];
+        
+        boolean visited [] = new boolean[V];
         Arrays.fill(visited, false);
-
-        for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
-                if (checkCycle(i, adj, visited))
-                    return true;
-            }
-        }
-
-        return false;
-
-    }
-
-    public boolean checkCycle(int s, ArrayList<ArrayList<Integer>> adj, boolean visited[]) {
-
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(new Node(s, -1));
-        visited[s] = true;
-
-        while (!queue.isEmpty()) {
-
-            int node = queue.peek().first;
-            int par = queue.peek().second;
-            queue.remove();
-
-            for (Integer it : adj.get(node)) {
-                if (!visited[it]) {
-                    queue.add(new Node(it, node));
-                    visited[it] = true;
-                } else if (par != it) {
+        
+        for(int i=0;i<V;i++){
+            if(visited[i]==false){
+                if(checkCycle(i,adj,visited)){
                     return true;
                 }
+                
             }
-
         }
-
         return false;
+        
     }
-
+    
+    public boolean checkCycle(int s,ArrayList<ArrayList<Integer>> adj,boolean visited []){
+        
+        Queue<Node> queue= new LinkedList<>();
+        
+        queue.add(new Node(s,-1));
+        visited[s]=true;
+        
+        while(!queue.isEmpty()){
+            int node = queue.peek().first;
+            int par=queue.peek().second;
+            queue.remove();
+            
+            
+            for(Integer it: adj.get(node)){
+                if(visited[it]==false){
+                    queue.add(new Node(it,node));
+                    visited[it]=true;
+                
+                }
+                
+                else if(par!=it) return true;
+            }
+            
+            
+        }
+        
+        return  false;
+        
+    }
+    
 }
