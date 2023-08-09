@@ -16,30 +16,21 @@
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         
-        List<Integer> list= new ArrayList<>();
-        
-        rightSide(root,list,0);
+        List<Integer> list = new ArrayList<>();
+        right(root,0,list);
         return list;
-      
-       
+        
     }
     
-    public  void rightSide(TreeNode root, List<Integer> list,int depth){
-        if(root==null){
-            return;
+    
+    public void right(TreeNode root,int level,List<Integer> list){
+        if(root==null) return ;
+        
+        if(list.size()==level){
+            list.add(root.val);
         }
         
-        // pre order traversal, time complexity:o(n), space complexity : o(h), height of the tree
-         
-    if(depth==list.size()){
-       list.add(root.val);   
+        right(root.right,level+1,list);
+        right(root.left,level+1,list);
     }
-        
-        rightSide(root.right,list,depth+1);
-        
-        rightSide(root.left,list,depth+1);
-       
-      
-      }
-    
 }
