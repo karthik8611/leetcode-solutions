@@ -15,33 +15,23 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        Queue<TreeNode> queue= new LinkedList<>();
         
-        List<List<Integer>> list = new LinkedList<List<Integer>>();
-        
-        if(root==null){
-            return list;
-        }
-        
-      //  tc:o(n)  and sc:o(n)
-        
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            
-            int level=queue.size();
-            List<Integer> tempList= new LinkedList<>();
-           for(int i=0;i<level;i++){
-            if(queue.peek().left!=null) queue.offer(queue.peek().left);
-            if(queue.peek().right!=null)queue.offer(queue.peek().right);
-               tempList.add(queue.poll().val);
-           }
-            list.add(tempList);
-            
-        }
-        
+        List<List<Integer>> list = new ArrayList<>();
+        levelWise(root,0,list);
         return list;
+        
         
     }
     
+    public void levelWise(TreeNode root, int level,  List<List<Integer>> list){
+        if(root==null) return;
+        
+        if(list.size()==level){
+            list.add(new ArrayList<>());
+          }
+        list.get(level).add(root.val);
+         levelWise(root.left,level+1,list);
+        levelWise(root.right,level+1,list);
     
+    }
 }
