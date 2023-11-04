@@ -11,6 +11,8 @@
 class Solution {
     public ListNode middleNode(ListNode head) {
         
+        ListNode node=head;
+        
         ListNode fast=head;
         ListNode slow=head;
         
@@ -20,6 +22,8 @@ class Solution {
         }
         
         return slow;
+        
+        
         
     }
 }
