@@ -21,23 +21,19 @@ class Solution {
         rightSide(root,0,list);
         return list;
         
+
+        
     }
     
-    public void rightSide(TreeNode root, int level, List<Integer> list){
+    public void rightSide(TreeNode root, int level,List<Integer> list){
         
-        
-        if(root==null){
-            return ;
-        }
+        if(root==null) return;
         
         if(list.size()==level){
-          
-            
             list.add(root.val);
         }
         
         rightSide(root.right,level+1,list);
         rightSide(root.left,level+1,list);
-        
     }
 }
