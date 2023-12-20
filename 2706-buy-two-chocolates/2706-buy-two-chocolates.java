@@ -1,30 +1,25 @@
 class Solution {
-
     public int buyChoco(int[] prices, int money) {
-        int ans = 0;
-
-        boolean flag = false;
-
-        int min = Integer.MAX_VALUE;
-
-        for (int i = 0; i < prices.length; i++) {
-            
-            for (int j = i+1; j < prices.length; j++) {
-               int sum = prices[i] + prices[j];
-                
-                
-                    min=Math.min(min,sum);
-                
+        
+        int smallest=Integer.MAX_VALUE,secondSmallest=Integer.MAX_VALUE;
+        
+        for(int i=0;i<prices.length;i++){
+            if(prices[i]<smallest){
+                secondSmallest=smallest;
+                smallest=prices[i];
+            }else if(prices[i]<secondSmallest){
+                secondSmallest=prices[i];
                 
             }
         }
-
-        if (min<=money) {
-            ans = money-min;
-        }else{
-            ans=money;
-        }
         
-        return ans;
+        int minCost=smallest+secondSmallest;
+            
+            if(minCost<=money){
+                return money-minCost;
+            }
+        return money;
+            
+        
     }
 }
