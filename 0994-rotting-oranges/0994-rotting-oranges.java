@@ -3,41 +3,68 @@ class Solution {
         
         int rows=grid.length;
         int cols=grid[0].length;
-        int fresh_count=0;
-        Queue<int[]> queue = new LinkedList<>();
+        
+   
         
         for(int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
                 if(grid[i][j]==2){
-                    queue.offer(new int[]{i,j});
-                }else if(grid[i][j]==1){
-                    fresh_count++;
-              }
-            }
-        }
-        
-        int count=0;
-        int[][] dirs={{1,0},{-1,0},{0,1},{0,-1}};
-        while(!queue.isEmpty() && fresh_count>0 ){
-            count++;
-            int size=queue.size();
-            
-            for(int i=0;i<size;i++){
-                int[] point=queue.poll();
-                
-                for(int[] dir:dirs){
-                    int x=point[0]+dir[0];
-                    int y=point[1]+dir[1];
-                    
-                    if(x<0 || y<0 || x>=rows || y>=cols || grid[x][y]==0 || grid[x][y]==2)continue;
-                    grid[x][y]=2;
-                    fresh_count--;
-                    queue.add(new int[]{x,y});
+                    rotAdjacent(grid,i,j,2);
                 }
             }
         }
         
-        return fresh_count==0?count:-1;
+           //  int minutes=2;
+        
+        // for(int[] row:grid){
+        //     for(int cell :row){
+        //         if(cell==-1){
+        //             return -1;
+        //         }else{
+        //             minutes=Math.max(minutes,cell);
+        //         }
+        //     }
+        // }
+        int minutes = 2;
+        for(int[] row : grid) {
+            for(int cell : row) {
+                if(cell == 1) return -1;
+                minutes = Math.max(minutes, cell);
+            }
+        }
+        
+        
+        
+        return minutes-2;
+    
         
     }
+    
+//     public void rotAdjacent(int[][]grid, int i, int j,int minutes){
+        
+//         if(i<0 || i>=grid.length || j<0 || j>=grid[0].length || grid[i][j]==0 || (1<grid[i][j] && grid[i][j]<minutes))return;
+//             else{
+//             grid[i][j]=minutes;
+//             rotAdjacent(grid,i-1,j,minutes+1);
+//                rotAdjacent(grid,i+1,j,minutes+1);
+//                rotAdjacent(grid,i,j-1,minutes+1);
+//                rotAdjacent(grid,i,j+1,minutes+1);
+//         }
+        
+//     }
+     private void rotAdjacent(int[][] grid, int i, int j, int minutes) {
+        if(i < 0 || i >= grid.length /* out of bounds */
+          || j < 0 || j >= grid[0].length /* out of bounds */
+          || grid[i][j] == 0 /* empty cell */
+          || (1 < grid[i][j] && grid[i][j] < minutes) /* this orange is already rotten by another rotten orange */
+          ) return;
+        else {
+            grid[i][j] = minutes;
+            rotAdjacent(grid, i - 1, j, minutes + 1);
+            rotAdjacent(grid, i + 1, j, minutes + 1);
+            rotAdjacent(grid, i, j - 1, minutes + 1);
+            rotAdjacent(grid, i, j + 1, minutes + 1);
+        }
+    
+}
 }
