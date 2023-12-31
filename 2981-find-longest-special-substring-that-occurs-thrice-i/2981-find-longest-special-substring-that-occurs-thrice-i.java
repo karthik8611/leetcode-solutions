@@ -5,10 +5,12 @@ class Solution {
         
         int res=-1;
         
-        for(int i=0;i<=s.length();i++){
+        for(int i=0;i<s.length();i++){
+            String k="";
             
-            for(int j=i+1;j<=s.length();j++){
-                   String k=s.substring(i,j);
+            for(int j=i;j<s.length();j++){
+                k+=s.charAt(j);
+                  
             
             map.put(k,map.getOrDefault(k,0)+1);
                 
