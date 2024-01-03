@@ -7,13 +7,13 @@ class Solution {
             for(int j=0;j<matrix[0].length;j++){
                    
                 pq.add(matrix[i][j]);
+                   while(pq.size()>k){
+            pq.poll();
+        }
                 
             }
         }
-        
-        while(pq.size()>k){
-            pq.poll();
-        }
+     
         
    return     pq.peek();
         
