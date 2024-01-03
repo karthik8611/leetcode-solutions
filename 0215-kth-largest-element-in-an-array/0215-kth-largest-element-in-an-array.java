@@ -6,12 +6,12 @@ class Solution {
             pq.offer(num);
         
         }
-        while(k>1){
+        while(k-1>0){
             pq.poll();
             k--;
         }
         
-        return pq.peek();
+        return pq.poll();
         
     }
 }
