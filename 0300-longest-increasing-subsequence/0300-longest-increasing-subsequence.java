@@ -10,7 +10,11 @@ class Solution {
                 res[i]=res[j]+1;
             }
         }
+        
     }
+        
+        // time compexity:o(n^2)
+        // space complexity:o(n)
         int max=0;
         
         for(int i=0;i<res.length;i++){
