@@ -16,24 +16,39 @@
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         
-        List<Integer> list = new ArrayList<>();
+        List<Integer> ans= new ArrayList<>();
+        if(root==null) return ans;
+        List<List<Integer>> list= new ArrayList<>();
+        levelOrder(root,list,0);
         
-        rightSide(root,0,list);
-        return list;
+//         for(int i=0;i<list.size();i++){
+//             for(int j=0;j<list.get(i).size();j++){
+//                 ans.add(list.get(i).get(list.get(i).size()-1));
+//             }
+//         }
+         for (List<Integer> sublist : list) {
+            int lastIndex = sublist.size() - 1;
+            if (lastIndex >= 0) { // Check if sublist is not empty
+                ans.add(sublist.get(lastIndex));
+            }
+        }
         
-
+        return ans;
         
     }
     
-    public void rightSide(TreeNode root, int level,List<Integer> list){
-        
-        if(root==null) return;
-        
-        if(list.size()==level){
-            list.add(root.val);
+    public void levelOrder(TreeNode root, List<List<Integer>> list,int level){
+        if(root==null){
+            return;
         }
         
-        rightSide(root.right,level+1,list);
-        rightSide(root.left,level+1,list);
+        if(level==list.size()){
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(root.val);
+        levelOrder(root.left,list,level+1);
+        levelOrder(root.right,list,level+1);
+        
+        
     }
 }
