@@ -15,26 +15,25 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
+        
         List<List<Integer>> list = new ArrayList<>();
-        levelWise(root,list,0);
+        if(root==null){
+            return list;
+        }
+        levelOrderTraversal(root, list, 0);
         return list;
         
     }
     
-    public void levelWise(TreeNode root,List<List<Integer>> list,int level){
-        
-        if(root==null)return;
-        
-        
-        if(list.size()==level){
-            list.add(new ArrayList<>());
+    public  void levelOrderTraversal(TreeNode root,List<List<Integer>> list,int level){
+         if(root==null){
+             return ;
          }
-         list.get(level).add(root.val);
-        
-        
-        levelWise(root.left,list,level+1);
-         levelWise(root.right,list,level+1);
-        
-        
+        if(level==list.size()){
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(root.val);
+        levelOrderTraversal(root.left, list,level+1);
+        levelOrderTraversal(root.right,list, level+1);
     }
 }
