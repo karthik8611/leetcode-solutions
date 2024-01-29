@@ -15,23 +15,16 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-    if(root==null)return true;
-    return height(root)!=-1;
+        return height(root)!=-1;
+        
     }
     
-    // bottom up approach--> o(n) solution
-    
-    public int height(TreeNode node){
-        if(node==null)return 0;
-        int l=height(node.left);
-        int r=height(node.right);
-        int bl=Math.abs(l-r);
+    public int height(TreeNode root){
+        if(root==null) return 0;
+        int l=height(root.left);
+        int r=height(root.right);
         
-        
-        
-        if(bl>1 || r== -1 || l==-1) return -1;
+        if(Math.abs(l-r)>1 || r==-1 || l==-1) return -1;
         return 1+Math.max(l,r);
     }
-    
-    
 }
