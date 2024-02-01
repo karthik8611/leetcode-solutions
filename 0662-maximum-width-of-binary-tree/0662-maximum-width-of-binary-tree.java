@@ -14,28 +14,28 @@
  * }
  */
 class Solution {
-    
-    private int max=1;
+    int max=1;
     public int widthOfBinaryTree(TreeNode root) {
-        
-    List<Integer> list = new ArrayList<>();
-        
-        width(root,1,0,list);
+        if(root==null) return 0;
+        List<Integer> list = new ArrayList<>();
+        helper(root,0,1,list);
         return max;
         
     }
     
-    public void  width(TreeNode root,int index, int level, List<Integer> list){
+    public void helper(TreeNode root, int level, int index,List<Integer> list){
         if(root==null){
             return;
         }
         
+        // its like left view of binary tree, we adding indexes of left side values,and sub it from right //side ones
+        
         if(level==list.size()){
             list.add(index);
-          
         }
-          max=Math.max(max,index+1-list.get(level));
-        width(root.left,index*2,level+1,list);
-        width(root.right,index*2+1,level+1,list);
+        
+        max=Math.max(max,index+1-list.get(level));
+        helper(root.left,level+1,index*2,list);
+        helper(root.right,level+1,index*2+1,list);
     }
 }
