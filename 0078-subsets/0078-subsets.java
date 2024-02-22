@@ -3,25 +3,21 @@ class Solution {
         
         List<List<Integer>> list = new ArrayList<>();
         
-        printSub(0,nums,new ArrayList<>(),list);
+        backtrack(list,new ArrayList<>(),0,nums);
         return list;
-        
-     // time complexiy   
-      //TC: O(n * 2^n), as every element has two options-to pick or not pick and n bcz we are copying the list of size n in base case.
-//SC: O(n * 2^n)  
-        
     }
-    public static void printSub(int i, int arr [], ArrayList<Integer> subset,List<List<Integer>> list){
-        if(i==arr.length){
-            list.add(new  ArrayList<>(subset));
+    
+    public void backtrack(List<List<Integer>> list,List<Integer> temp,int i,int[] nums){
+        if(i==nums.length){
+            list.add(new ArrayList<>(temp));
             return;
         }
         
-        subset.add(arr[i]);
-        printSub(i+1,arr,subset,list);
-        subset.remove(subset.size()-1);
-        printSub(i+1,arr,subset,list);
+        temp.add(nums[i]);
+        backtrack(list,temp,i+1,nums);
+        temp.remove(temp.size()-1);
+        backtrack(list,temp,i+1,nums);
+        
+        
     }
-    
-    
 }
