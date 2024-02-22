@@ -6,17 +6,17 @@ class Solution {
         backtrack(list,new ArrayList<>(),0,nums);
         return list;
     }
-    
-    public void backtrack(List<List<Integer>> list,List<Integer> temp,int i,int[] nums){
-        if(i==nums.length){
-            list.add(new ArrayList<>(temp));
-            return;
-        }
+public void backtrack(List<List<Integer>> list,List<Integer> temp,int idx,int[] nums){
         
-        temp.add(nums[i]);
-        backtrack(list,temp,i+1,nums);
-        temp.remove(temp.size()-1);
-        backtrack(list,temp,i+1,nums);
+        list.add(new ArrayList<>(temp));
+        
+        for(int i=idx;i<nums.length;i++){
+            temp.add(nums[i]);
+            backtrack(list,temp,i+1,nums);
+            temp.remove(temp.size()-1);
+            
+            
+        }
         
         
     }
