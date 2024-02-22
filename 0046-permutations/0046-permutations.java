@@ -5,22 +5,21 @@ class Solution {
         backtrack(list,new ArrayList<>(),nums);
         return list;
         
-        // time complexity o(n!*n)  space: o(n) excluding answer;
-        // use diccuss section for better understanding
     }
     
-    private void backtrack(List<List<Integer>> list,List<Integer> tempList,int [] nums){
-        if(tempList.size()== nums.length){
+    public void backtrack(List<List<Integer>> list,List<Integer> tempList,int[] arr){
+        if(tempList.size()==arr.length){
             list.add(new ArrayList<>(tempList));
+            return;
         }else{
-            for(int i=0;i<nums.length;i++){
-                if(tempList.contains(nums[i])) continue;
-                tempList.add(nums[i]);
-                backtrack(list,tempList,nums);
+            for(int i=0;i<arr.length;i++){
+               if (tempList.contains(arr[i])) continue;
+                tempList.add(arr[i]);
+                backtrack(list,tempList, arr);
                 tempList.remove(tempList.size()-1);
+                                 
+                                 
             }
         }
-        
-        
     }
 }
