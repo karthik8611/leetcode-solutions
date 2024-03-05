@@ -12,18 +12,21 @@
 public class Solution {
     public boolean hasCycle(ListNode head) {
         
-       // if there is cycle in linked two pointers will meet at some point 
-       ListNode fast=head;
-       ListNode slow=head;
+        Map<ListNode,Integer> map = new HashMap<>();
         
-        while(fast!=null && fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
+        ListNode temp=head;
+        
+        while(temp!=null){
             
-            if(fast==slow)
+            if(map.containsKey(temp)){
                 return true;
+            }
+            
+            map.put(temp,1);
+            temp=temp.next;
         }
         
-        return  false;
+        return false;
+        
     }
 }
