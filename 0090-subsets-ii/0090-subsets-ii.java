@@ -9,15 +9,16 @@ class Solution {
     
     public void backtrack(List<List<Integer>> list,List<Integer> temp,int start,int[] nums){
         
-            list.add(new ArrayList<>(temp));
+        if(list.contains(temp))return;
+            
+        
+        
+        list.add(new ArrayList<>(temp));
     
         
         
         for(int i=start;i<nums.length;i++){
-        if(i>start && nums[i-1]==nums[i]){
-            continue;
-            
-        }
+    
         
         temp.add(nums[i]);
         backtrack(list,temp,i+1,nums);
