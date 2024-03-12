@@ -9,22 +9,22 @@
  * }
  */
 class Solution {
-
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
+        
+        if(head==null){
+            return null;
         }
-        //     compare  adjacent  node value and make adjacement to node pointers
-
-        ListNode list = head;
-        while (list.next != null) {
-            if (list.val == list.next.val) {
-                list.next = list.next.next;
-            } else {
-                list = list.next;
+        
+        ListNode curr=head;
+        while(curr.next!=null){
+            if(curr.val==curr.next.val){
+                curr.next=curr.next.next;
+            }else{
+                curr=curr.next;
             }
         }
-
+        
         return head;
+        
     }
 }
