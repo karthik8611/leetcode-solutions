@@ -1,33 +1,31 @@
 class Solution {
     public int search(int[] nums, int target) {
         
-        int low=0,high=nums.length-1;
+        int si=0;
+        int ei=nums.length-1;
         
-        // time complexity o(n)
-        while(low<=high){
-            int mid= low+(high-low)/2;
+        while(si<=ei){
+            int mid=(si+ei)/2;
             
-            if(nums[mid]==target) return mid;
-            
-            // left half is sorted
-            if(nums[low]<=nums[mid]){
-                if(nums[low]<=target && target<=nums[mid]){
-                    high=mid-1;
-                }else{
-                    low=mid+1;
+            if(nums[mid]==target){
+                return mid;
+            }else if(nums[si]<=nums[mid]){
+                
+                if(nums[si]<=target && nums[mid]>target){
+                    ei=mid-1;
+                }else {
+                    si=mid+1;
                 }
-            
-          }
-           else{
-                if(nums[mid]<=target && target<=nums[high]){
-                    low=mid+1;
+            }else{
+                if(nums[mid]<target &&  nums[ei]>=target){
+                    si=mid+1;
                 }else{
-                    high=mid-1;
+                    ei=mid-1;
                 }
             }
         }
-                   
-                   return -1;
+        
+        return -1;
         
     }
 }
