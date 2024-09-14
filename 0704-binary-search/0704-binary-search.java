@@ -16,10 +16,14 @@ class Solution {
         if(arr[mid]==key) {
             return mid;
         }else if(arr[mid]<key){
-         return binarySearch(arr,mid+1,high,key);
+            low=mid+1;
+     
         }else{
-        return binarySearch(arr,low, mid-1,key);
+            high=mid-1;
+
         }
+        
+        return binarySearch(arr,low,high,key);
         
     
     }
