@@ -1,15 +1,24 @@
 class Solution {
+
     public List<Integer> lexicalOrder(int n) {
-        
-        Integer[] arr = new Integer[n];
-        
-        for(int i=0;i<n;i++){
-            arr[i]=i+1;
+        int current_num = 1;
+
+        List<Integer> ans = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            ans.add(current_num);
+
+            if (current_num *10<= n) {
+                current_num=current_num*10;
+            }else{
+                
+                while(current_num%10==9 || current_num>=n){
+                    current_num=current_num/10;
+                }
+                current_num++;
+            }
         }
         
-        Arrays.sort(arr,(a,b)->a.toString().compareTo(b.toString()));
-        
-        return Arrays.asList(arr);
-        
+        return ans;
     }
 }
