@@ -1,28 +1,19 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         
-        int n1=s1.length(),n2=s2.length();
+        s1=sort(s1);
         
-        if(n1>n2) return false;
-        
-        int [] s1CharFreq=new int[26];
-        int [] s2CharFreq= new int[26];
-        
-        for(int i=0;i<n1;i++){
-            s1CharFreq[s1.charAt(i)-'a']++;
-            s2CharFreq[s2.charAt(i)-'a']++;
-        }
-        
-        if(Arrays.equals(s1CharFreq,s2CharFreq)) return true;
-        
-        for(int i=n1;i<n2;i++){
-            s2CharFreq[s2.charAt(i)-'a']++;
-            s2CharFreq[s2.charAt(i-n1)-'a']--;
-            if(Arrays.equals(s1CharFreq,s2CharFreq)) return true;
-            
+        for(int i=0;i<=s2.length()-s1.length();i++){
+            if(s1.equals(sort(s2.substring(i,i+s1.length())))) return true;
         }
         
         return false;
         
     }
+    public String sort(String s){
+        char[] arr=s.toCharArray();
+        Arrays.sort(arr);
+        return new String(arr);  
+    }
+
 }
